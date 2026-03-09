@@ -1,7 +1,7 @@
 public class HelloWorld {
     public static void main(String[] args) {
         System.out.println("Hello, World!");
-        System.out.println("Welcome to Java GitHub Actions!");
+        System.out.println("Welcome to jatin!");
         
         // Display system information
         System.out.println("Java Version: " + System.getProperty("java.version"));
