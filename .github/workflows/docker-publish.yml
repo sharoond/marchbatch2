@@ -33,6 +33,5 @@ jobs:
           file: ./docker-java-sample/Dockerfile
           push: true
           tags: |
-            ${{ sharoond }}/demo:v1
-
-            ${{ dckr_pat_Hy0WW28SGZGM16Mx7brSG5XNAzE }}/docker-java-sample:${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/demo:v1
+            ${{ secrets.DOCKERHUB_USERNAME }}/docker-java-sample:${{ github.sha }}
