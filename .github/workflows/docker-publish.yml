@@ -18,9 +18,11 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-        
-      - name: Debug secret existence
+
+      - name: Debug repo + secret availability
         run: |
+          echo "GITHUB_REPOSITORY=$GITHUB_REPOSITORY"
+          echo "GITHUB_EVENT_NAME=$GITHUB_EVENT_NAME"
           echo "USERNAME exists: ${{ secrets.DOCKERHUB_USERNAME != '' }}"
           echo "TOKEN exists: ${{ secrets.DOCKERHUB_TOKEN != '' }}"
 
