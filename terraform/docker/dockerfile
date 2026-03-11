@@ -1,0 +1,5 @@
+FROM nginx
+COPY ./index.html /usr/share/nginx/html/index.html
+RUNapt-get update && apt-get install -y openjdk-11-jdk
+EXPOSE 80
+CMD 

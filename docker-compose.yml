@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres_db
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker-java-sample/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - docker-network
+
+  app:
+    build:
+      context: ./docker-java-sample
+      dockerfile: Dockerfile
+    image: docker-java-sample:local
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      - JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=root
+    networks:
+      - docker-network
+
+volumes:
+  postgres_data:
+
+networks:
+  docker-network:
+    driver: bridge

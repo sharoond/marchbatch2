@@ -10,11 +10,12 @@ resource "aws_instance" "example" {
 }
 
 resource "aws_s3_bucket" "example_bucket" {
-  bucket = "example-bucket-terraform-2024"
+  count  = 2
+  bucket = "example-bucket-terraform-2024-${count.index}"
   #acl    = "private"
 
   tags = {
-    Name        = "ExampleBucket"
+    Name        = "ExampleBucket-${count.index}"
     Environment = "Dev"
   }
 }

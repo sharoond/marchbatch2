@@ -2,8 +2,13 @@ name: Build & Push Docker image
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master", "main" ]
   workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Docker image tag to push (e.g. latest, v1.0.0)'
+        required: false
+        default: 'latest'
 
 jobs:
   build-and-push:
@@ -40,5 +45,5 @@ jobs:
           file: ./docker-java-sample/Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/demo:v1
+            ${{ secrets.DOCKERHUB_USERNAME }}/docker-java-sample:${{ github.event.inputs.tag }}
             ${{ secrets.DOCKERHUB_USERNAME }}/docker-java-sample:${{ github.sha }}
