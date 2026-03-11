@@ -45,5 +45,5 @@ jobs:
           file: ./docker-java-sample/Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/docker-java-sample:${{ github.event.inputs.tag }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/docker-java-sample:${{ github.event.inputs.tag || 'latest' }}
             ${{ secrets.DOCKERHUB_USERNAME }}/docker-java-sample:${{ github.sha }}
