@@ -17,10 +17,7 @@ services:
       - docker-network
 
   app:
-    build:
-      context: ./docker-java-sample
-      dockerfile: Dockerfile
-    image: docker-java-sample:local
+    image: sharoond/docker-java-sample:latest
     ports:
       - "8080:8080"
     depends_on:
